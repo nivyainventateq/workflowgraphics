@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<style>
+table, th, td {
+  border: 1px solid black;
+}
+</style>
+</head>
+<body  onload="FillDropHtmlOptions()">
+
+<h1>The table element</h1>
+
+<table >
+    <thead>
+
+     <tr>
+    <th>test name</th>
+    <th>Steps</th>
+  </tr>
+    </thead>
+    <tbody id="Priority_options">
+
+
+
+
+    </tbody>
+</table>
+
+</body>
+<script>
+
+
+function FillDropHtmlOptions() {
+
+$.ajax({
+    url : "/get-api-json",
+    type: "Get",
+       success: function(data, textStatus, jqXHR)
+    {
+        console.log(data)
+        var data = data['data']
+          for(var i=0;i<data.length;i++){
+          $('#Priority_options').append("<tr><th>"+data[i]['Redfish/Rest Testcases']+"</th><th>"+data[i]['Steps']+"</th></tr>")
+        }
+    },
+    error: function (jqXHR, textStatus, errorThrown)
+    {
+
+    }
+});
+
+
+
+}
+
+</script>
+</html>
