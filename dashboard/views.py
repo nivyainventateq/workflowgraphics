@@ -133,3 +133,36 @@ class DisplayTable(APIView):
         return render(request, template_name=self.template_name)
 
 tabletemplate= DisplayTable.as_view()
+
+
+
+import json
+class ManpulateJson(APIView):
+
+    def post(self,request,*args,**kwargs):
+        data = request.data
+        comment =''
+        # print(claer)
+        data = json.loads(data['data'])
+        duplicate_data = data
+        for x in data:
+            if 'category' in x:
+                if x['category']=='Comment':
+                    comment=x['text']
+                    address = duplicate_data.index(x)
+                    duplicate_data.pop(address)
+                if x['category']=='Start':
+                    address = duplicate_data.index(x)
+                    duplicate_data.pop(address)
+                if x['category']=='End':
+                    address = duplicate_data.index(x)
+                    duplicate_data.pop(address)
+            if x['key']==-1:
+                address = duplicate_data.index(x)
+                duplicate_data.pop(address)
+        duplicate_data.pop(0)
+        for c in duplicate_data:
+            print(c['text'].strip())
+        print(comment.split(','))
+        return Response({'data': duplicate_data})
+manpulate_json = ManpulateJson.as_view()

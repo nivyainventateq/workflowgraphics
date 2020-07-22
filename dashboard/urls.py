@@ -15,7 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from .views import test, login, auth, upload_api, save_file, get_api_json, get_specific_api_json, tabletemplate
+from .views import test, login, auth, upload_api, save_file, get_api_json, get_specific_api_json, tabletemplate, \
+    manpulate_json
 
 urlpatterns = [
 
@@ -29,6 +30,7 @@ path('save-file',  view =save_file, name='uploadapi'),
 path('get-api-json',  view = get_api_json, name='uploadapi'),
 
 path('get-spec-json/<str:genre>',  view = get_specific_api_json, name='uploadapi'),
-path('tabletemplate/',  view = tabletemplate, name='uploadapi')
+path('tabletemplate/',  view = tabletemplate, name='uploadapi'),
+path('receive-manupilute-Json/',  view = manpulate_json, name='manpulate_json')
 
 ]
