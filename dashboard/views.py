@@ -14,11 +14,35 @@ from django.contrib.auth.models import User
 from .exception import IncorrectAuthCredentials, IncorrectData
 from .serializer import LoginSerializer
 from django.http import JsonResponse
+
+from rasa_nlu.training_data import load_data
+from rasa_nlu.config import RasaNLUModelConfig
+from rasa_nlu.model import Trainer
+from rasa_nlu import config
+from rasa_nlu.model import Metadata, Interpreter
+
+
+global_data =None
+
+def load_and_train():
+    print(os.path.abspath(__file__))
+    train_data  = load_data('dashboard/rasa_data_servers.json')
+    trainer = Trainer(config.load('dashboard/config_spacy.yaml'))
+    trainer.train(train_data)
+    model_directory = trainer.persist('dashboard/projects')
+    interpreter = Interpreter.load(model_directory)
+    global global_data
+    global_data =interpreter
+    return interpreter
+
+
+
+
 import os.path
 import os
 
 from .utility import saveJsonfiles, convertjson
-
+import pickle
 
 class Test(View):
     template_name='Flowchart_.html'
@@ -137,6 +161,8 @@ tabletemplate= DisplayTable.as_view()
 
 
 import json
+
+
 class ManpulateJson(APIView):
 
     def post(self,request,*args,**kwargs):
@@ -161,8 +187,22 @@ class ManpulateJson(APIView):
                 address = duplicate_data.index(x)
                 duplicate_data.pop(address)
         duplicate_data.pop(0)
-        for c in duplicate_data:
-            print(c['text'].strip())
+        final_data =[]
+        if global_data is None:
+            call = load_and_train()
+            print(global_data)
+            for x in duplicate_data:
+                final_data.append(global_data.parse(x['text']))
+        else:
+            for x in duplicate_data:
+                final_data.append(global_data.parse(x['text']))
+            print(global_data,"elseeeee")
+
+
         print(comment.split(','))
-        return Response({'data': duplicate_data})
+
+        return Response({'data': duplicate_data,'tempdata':final_data})
 manpulate_json = ManpulateJson.as_view()
+
+
+

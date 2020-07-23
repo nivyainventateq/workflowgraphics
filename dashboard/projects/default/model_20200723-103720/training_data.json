@@ -1,0 +1,254 @@
+{
+  "rasa_nlu_data": {
+    "common_examples": [
+      {
+        "intent": "login",
+        "text": "connect to server"
+      },
+      {
+        "intent": "login",
+        "entities": [
+          {
+            "start": 9,
+            "end": 15,
+            "value": "server",
+            "entity": "device"
+          },
+          {
+            "start": 20,
+            "end": 23,
+            "value": "ssh",
+            "entity": "connection type"
+          }
+        ],
+        "text": "login to server via ssh "
+      },
+      {
+        "intent": "login",
+        "entities": [
+          {
+            "start": 9,
+            "end": 15,
+            "value": "server",
+            "entity": "device"
+          },
+          {
+            "start": 20,
+            "end": 24,
+            "value": "rest",
+            "entity": "connection type"
+          }
+        ],
+        "text": "login to server via rest"
+      },
+      {
+        "intent": "login",
+        "entities": [
+          {
+            "start": 11,
+            "end": 17,
+            "value": "server",
+            "entity": "device"
+          },
+          {
+            "start": 22,
+            "end": 25,
+            "value": "ssh",
+            "entity": "connection type"
+          }
+        ],
+        "text": "connect to server via ssh"
+      },
+      {
+        "intent": "login",
+        "entities": [
+          {
+            "start": 11,
+            "end": 17,
+            "value": "server",
+            "entity": "device"
+          },
+          {
+            "start": 22,
+            "end": 26,
+            "value": "rest",
+            "entity": "connection type"
+          }
+        ],
+        "text": "connect to server via rest"
+      },
+      {
+        "intent": "login",
+        "entities": [
+          {
+            "start": 9,
+            "end": 22,
+            "value": "ECM/ISM/CM2.0",
+            "entity": "ip address"
+          },
+          {
+            "start": 27,
+            "end": 13,
+            "value": "REST",
+            "entity": "connection type"
+          }
+        ],
+        "text": "Login to ECM/ISM/CM2.0 via REST"
+      },
+      {
+        "intent": "Validate",
+        "entities": [
+          {
+            "start": 13,
+            "end": 18,
+            "value": "Power",
+            "entity": "category"
+          }
+        ],
+        "text": "Validate the Power"
+      },
+      {
+        "intent": "Clear",
+        "entities": [
+          {
+            "start": 6,
+            "end": 16,
+            "value": "event logs",
+            "entity": "category"
+          }
+        ],
+        "text": "Clear Event logs"
+      },
+      {
+        "intent": "Clear",
+        "entities": [
+          {
+            "start": 6,
+            "end": 17,
+            "value": "Health logs",
+            "entity": "category"
+          }
+        ],
+        "text": "Clear Health logs"
+      },
+      {
+        "intent": "Validate",
+        "entities": [
+          {
+            "start": 9,
+            "end": 22,
+            "value": "ECM/ISM/CM2.0",
+            "entity": "ip address"
+          },
+          {
+            "start": 23,
+            "end": 20,
+            "value": "Manager URL",
+            "entity": "category"
+          }
+        ],
+        "text": "Validate ECM/ISM/CM2.0 Manager URL"
+      },
+      {
+        "intent": "Logout",
+        "entities": [
+          {
+            "start": 12,
+            "end": 25,
+            "value": "ECM/ISM/CM2.0",
+            "entity": "ip address"
+          }
+        ],
+        "text": "Logout from ECM/ISM/CM2.0"
+      },
+      {
+        "intent": "Logout",
+        "entities": [
+          {
+            "start": 12,
+            "end": 18,
+            "value": "server",
+            "entity": "ip address"
+          }
+        ],
+        "text": "Logout from server"
+      },
+      {
+        "intent": "logout",
+        "entities": [
+          {
+            "start": 12,
+            "end": 18,
+            "value": "server",
+            "entity": "ip address"
+          }
+        ],
+        "text": "logout from server"
+      },
+      {
+        "intent": "Verify",
+        "entities": [
+          {
+            "start": 20,
+            "end": 42,
+            "value": "Health/Management logs",
+            "entity": "category"
+          }
+        ],
+        "text": "Verify No errors in Health/Management logs"
+      },
+      {
+        "intent": "Verify",
+        "entities": [
+          {
+            "start": 20,
+            "end": 43,
+            "value": "Thermal/Fan Information",
+            "entity": "category"
+          }
+        ],
+        "text": "Verify No errors in Thermal/Fan Information"
+      },
+      {
+        "intent": "Validate",
+        "entities": [
+          {
+            "start": 13,
+            "end": 36,
+            "value": "Thermal/Fan Information",
+            "entity": "category"
+          }
+        ],
+        "text": "Validate the Thermal/Fan Information"
+      }
+    ],
+    "regex_features": [
+      {
+        "name": "greet",
+        "pattern": "hey[^\\s]*"
+      },
+      {
+        "name": "zipcode",
+        "pattern": "[0-9]{5}"
+      }
+    ],
+    "lookup_tables": [],
+    "entity_synonyms": [
+      {
+        "value": "chinese",
+        "synonyms": [
+          "Chinese",
+          "Chines",
+          "chines"
+        ]
+      },
+      {
+        "value": "vegetarian",
+        "synonyms": [
+          "veggie",
+          "vegg"
+        ]
+      }
+    ]
+  }
+}
