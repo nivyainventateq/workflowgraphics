@@ -20,6 +20,9 @@ from rasa_nlu.config import RasaNLUModelConfig
 from rasa_nlu.model import Trainer
 from rasa_nlu import config
 from rasa_nlu.model import Metadata, Interpreter
+# python Testsuite.py --filepath poc.json
+# pybot ../testsuite/Testcase1.txt
+
 
 
 global_data =None
@@ -196,12 +199,33 @@ class ManpulateJson(APIView):
         else:
             for x in duplicate_data:
                 final_data.append(global_data.parse(x['text']))
-            print(global_data,"elseeeee")
+        coments_clean={}
+        clear_data= comment.split(',')
+        for data in  clear_data:
+            re = data.split('=')
+            if re[0] == 'username':
+                coments_clean.update({'username':re[1]})
+                print(coments_clean,">>>>>>>>>>>>>>>>>>>>>>>>>")
+            if re[0] == 'password':
+                coments_clean.update({'password': re[1]})
+                print(coments_clean,">>>>>>>>>>>>>>>>>>>>>>>>>")
+            if re[0] == 'ip' :
+                coments_clean.update({'ip': re[1]})
+                print(coments_clean,">>>>>>>>>>>>>>>>>>>>>>>>>")
+        final_poc ={
+                "Name": "Testcase1",
+                "Ip":coments_clean['ip'],
+                "UserName":coments_clean['username'],
+                "Password":coments_clean['password'],
+                "Steps":[] }
+        entity_data=[]
+        for x in final_data:
+            entity_data.append({'name':x['intent']['name'],'entities':[x['entities'][0]]})
+
+        final_poc['Steps']=entity_data
 
 
-        print(comment.split(','))
-
-        return Response({'data': duplicate_data,'tempdata':final_data})
+        return Response({'data': duplicate_data,'tempdata':final_poc})
 manpulate_json = ManpulateJson.as_view()
 
 

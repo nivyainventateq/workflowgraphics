@@ -207,6 +207,17 @@
 		    "entity": "ip address"
 		}
 	    ]
+	},{
+	    "text": "logout to server",
+	    "intent": "logout",
+	    "entities": [
+		{
+		    "start": 10,
+		    "end": 16,
+		    "value": "server",
+		    "entity": "ip address"
+		}
+	    ]
 	},
 	{
 	    "text": "Verify No errors in Health/Management logs",

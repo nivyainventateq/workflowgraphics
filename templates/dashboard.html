@@ -28,6 +28,14 @@ tr:hover {
 color:wheat !important;
 
 }
+
+.buttonclass {
+    margin: 0 0 0 60px;
+    background: bisque;
+    height: 48px;
+    border: navajowhite;
+    border-radius: 9px;
+}
 </style>
 </head>
 <body onload="FillDropHtmlOptions()">
@@ -56,6 +64,8 @@ color:wheat !important;
 
 
         </header>
+
+
     </div>
     <!--  END NAVBAR  -->
 
@@ -77,6 +87,8 @@ color:wheat !important;
                     </div>
                 </li>
             </ul>
+            <button class="buttonclass" onclick="uploadtestcase()">  Upload Testcase</button>
+            <input type="file" name="testcase" id="testcase" style="opacity: 0;">
         </header>
     </div>
     <!--  END NAVBAR  -->
@@ -223,6 +235,35 @@ $(document).ready(function() {
         window.open('/edit/'+web_id, '_blank')
     });
 });
+
+
+function uploadtestcase(){
+
+var a  =  document.getElementById('testcase')
+a.click()
+}
+
+
+$(document).on("change", "#testcase", function(){
+
+var formData = new FormData();
+formData.append('files', document.getElementById('testcase').files[0])
+alert()
+$.ajax({
+            url: "/upload-api",
+            type: 'POST',
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function() { FillDropHtmlOptions() },
+        });
+
+
+
+})
+
+
 
     </script>
     <!-- END PAGE LEVEL SCRIPTS -->
